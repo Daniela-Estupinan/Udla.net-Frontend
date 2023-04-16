@@ -69,17 +69,21 @@ export function usePhotoGallery() {
         loadSaved();
     }, []);
     const takePhoto = async () => {
-        const photo = await Camera.getPhoto({
-            resultType: CameraResultType.Uri,
-            source: CameraSource.Camera,
-            quality: 100,
-        });
+        try {
+            const photo = await Camera.getPhoto({
+                resultType: CameraResultType.Uri,
+                source: CameraSource.Camera,
+                quality: 100,
+            });
 
-        const fileName = new Date().getTime() + '.jpeg';
-        const savedFileImage = await savePicture(photo, fileName);
-        const newPhotos = [savedFileImage, ...photos];
-        setPhotos(newPhotos);
-        await Preferences.set({key: PHOTO_STORAGE, value: JSON.stringify(newPhotos)});
+            const fileName = new Date().getTime() + '.jpeg';
+            const savedFileImage = await savePicture(photo, fileName);
+            const newPhotos = [savedFileImage, ...photos];
+            setPhotos(newPhotos);
+            await Preferences.set({key: PHOTO_STORAGE, value: JSON.stringify(newPhotos)});
+        } catch (e) {
+            console.log('no photo');
+        }
     };
 
     return {
