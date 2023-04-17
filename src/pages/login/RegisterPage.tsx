@@ -13,14 +13,19 @@ import {
 } from "@ionic/react";
 import {useHistory} from "react-router";
 import {chevronBackOutline} from "ionicons/icons"
+import {handleSignUp} from "../../connection/HandleLogin";
 
-const RegisterPage: React.FC = () => {
+interface RegisterPageProps {
+    sendSignUp: (value: boolean) => void;
+}
+const RegisterPage: React.FC<RegisterPageProps> = ({sendSignUp}) => {
     const history = useHistory();
     const [presentAlert] = useIonAlert();
     const [email, setEmail] = useState<any | null>("");
     const [password, setPassword] = useState<any | null>("");
     const [firstName, setFirstName] = useState<any | null>("");
     const [lastName, setLastName] = useState<any | null>("");
+    let error: string;
 
     const sendRegister = async () => {
         let objData = {
@@ -30,8 +35,18 @@ const RegisterPage: React.FC = () => {
             lastName: lastName
         }
         console.log(objData);
-        return false;
+        const user = await handleSignUp(objData);
+        console.log(user);
+        if (user.status === "failure") {
+            error = user.message;
+            console.log(user.message);
+            return true;
+        } else {
+            sendSignUp(true);
+            return false;
+        }
     }
+
 
     const handleBack = () => {
         history.go(-1);
