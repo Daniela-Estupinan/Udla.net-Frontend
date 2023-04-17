@@ -37,6 +37,7 @@ import './theme/variables.css';
 import Tabs from "./pages/Tabs";
 import {useState} from "react";
 import LoginPage from "./pages/login/LoginPage";
+import RegisterPage from "./pages/login/RegisterPage";
 
 setupIonicReact();
 
@@ -58,6 +59,12 @@ const App: React.FC = () => {
                             return isAuthed ? <Tabs/> : <LoginPage sendLogin={sendLogin}/>;
                         }}
                     />
+                    <Route exact path="/login">
+                        <LoginPage  sendLogin={sendLogin}/>
+                    </Route>
+                    <Route exact path="/register">
+                        <RegisterPage />
+                    </Route>
                     <Route exact path="/">
                         <Redirect to="/tabs"/>
                     </Route>
