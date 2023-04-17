@@ -18,7 +18,7 @@ import {handleSignUp} from "../../connection/HandleLogin";
 interface RegisterPageProps {
     sendSignUp: (value: boolean) => void;
 }
-const RegisterPage: React.FC = () => {
+const RegisterPage: React.FC<RegisterPageProps> = ({sendSignUp}) => {
     const history = useHistory();
     const [presentAlert] = useIonAlert();
     const [email, setEmail] = useState<any | null>("");
@@ -42,7 +42,7 @@ const RegisterPage: React.FC = () => {
             console.log(user.message);
             return true;
         } else {
-            sendRegister(true);
+            sendSignUp(true);
             return false;
         }
     }
