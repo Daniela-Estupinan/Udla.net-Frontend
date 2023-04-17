@@ -13,6 +13,7 @@ import {
 } from '@ionic/react';
 import {handleLogin} from "../../connection/HandleLogin";
 import {personCircle} from "ionicons/icons";
+import {Link} from "react-router-dom";
 
 interface LoginPageProps {
     sendLogin: (value: boolean) => void;
@@ -106,7 +107,7 @@ const LoginPage: React.FC<LoginPageProps> = ({sendLogin}) => {
                             Login
                         </IonButton>
                         <p style={{ fontSize: "medium" }}>
-                            Don't have an account? <a href="#">Sign up!</a>
+                            Don't have an account? <Link to="/register">Sign up!</Link>
                         </p>
                     </IonCol>
                 </IonRow>
