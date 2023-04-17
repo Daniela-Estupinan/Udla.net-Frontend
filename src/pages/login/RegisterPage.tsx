@@ -16,9 +16,9 @@ import {chevronBackOutline} from "ionicons/icons"
 import {handleSignUp} from "../../connection/HandleLogin";
 
 interface RegisterPageProps {
-    sendSignUp: (value: boolean) => void;
+    sendLogin: (value: boolean) => void;
 }
-const RegisterPage: React.FC<RegisterPageProps> = ({sendSignUp}) => {
+const RegisterPage: React.FC<RegisterPageProps> = ({sendLogin}) => {
     const history = useHistory();
     const [presentAlert] = useIonAlert();
     const [email, setEmail] = useState<any | null>("");
@@ -42,7 +42,8 @@ const RegisterPage: React.FC<RegisterPageProps> = ({sendSignUp}) => {
             console.log(user.message);
             return true;
         } else {
-            sendSignUp(true);
+            sendLogin(true);
+            history.push('/tabs');
             return false;
         }
     }
@@ -120,9 +121,16 @@ const RegisterPage: React.FC<RegisterPageProps> = ({sendSignUp}) => {
                         <IonButton expand="block" onClick={async () => {
                             if (await sendRegister()) {
                                 await presentAlert({
-                                    header: 'Ingreso Fallido',
+                                    header: 'Registro Fallido',
                                     //subHeader: 'Important message',
-                                    message: "error",
+                                    message: error,
+                                    buttons: ['OK'],
+                                })
+                            } else {
+                                await presentAlert({
+                                    header: 'Usuario Creado',
+                                    subHeader: 'Ya puedes ir a tu perfil y editar tu información',
+                                    //message: "Regresa para loggearte",
                                     buttons: ['OK'],
                                 })
                             }
