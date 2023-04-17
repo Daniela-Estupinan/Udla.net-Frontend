@@ -63,7 +63,7 @@ const App: React.FC = () => {
                         <LoginPage  sendLogin={sendLogin}/>
                     </Route>
                     <Route exact path="/register">
-                        <RegisterPage />
+                        <RegisterPage sendLogin={sendLogin} />
                     </Route>
                     <Route exact path="/">
                         <Redirect to="/tabs"/>
