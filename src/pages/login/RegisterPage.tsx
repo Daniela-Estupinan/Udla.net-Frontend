@@ -42,7 +42,7 @@ const RegisterPage: React.FC = () => {
             <IonHeader>
                 <IonToolbar>
                     <IonButton onClick={handleBack} fill="clear">
-                        <IonIcon icon={chevronBackOutline}></IonIcon>
+                        <IonIcon slot="icon-only" color="dark" icon={chevronBackOutline}></IonIcon>
                     </IonButton>
                     <IonTitle>Register</IonTitle>
                 </IonToolbar>
