@@ -43,11 +43,11 @@ const RegisterPage: React.FC<RegisterPageProps> = ({sendLogin}) => {
             return true;
         } else {
             sendLogin(true);
+            console.log("works");
             history.push('/tabs');
             return false;
         }
     }
-
 
     const handleBack = () => {
         history.go(-1);

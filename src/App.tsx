@@ -38,6 +38,7 @@ import Tabs from "./pages/Tabs";
 import {useState} from "react";
 import LoginPage from "./pages/login/LoginPage";
 import RegisterPage from "./pages/login/RegisterPage";
+import ProfilePage from "./pages/user/ProfilePage";
 
 setupIonicReact();
 
@@ -65,6 +66,12 @@ const App: React.FC = () => {
                     <Route exact path="/register">
                         <RegisterPage sendLogin={sendLogin} />
                     </Route>
+                    <Route
+                        path="/profile"
+                        render={(props) => {
+                            return isAuthed ? <ProfilePage sendLogin={sendLogin}/> : <LoginPage sendLogin={sendLogin}/>;
+                        }}
+                    />
                     <Route exact path="/">
                         <Redirect to="/tabs"/>
                     </Route>
