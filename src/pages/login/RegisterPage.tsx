@@ -206,17 +206,20 @@ const validateEmail = (email: string) => {
                 </IonRow>  
                 <IonRow>
                     <IonCol>
-                    <IonItem>
-                        <IonLabel>Género</IonLabel>
-                        <IonSelect>
-                            <IonSelectOption>F</IonSelectOption>
-                            <IonSelectOption>M</IonSelectOption>
-                            <IonSelectOption>O</IonSelectOption>
-                        </IonSelect>
+                        <IonItem>
+                            <IonInput
+                                type="text"
+                                value={gender}
+                                label="Genero"
+                                labelPlacement="floating"
+                                maxlength={2}
+                                placeholder="(F,M,O)"
+                                onIonChange={e => setGender(e.detail.value!)}                             
+                            ></IonInput>
                         </IonItem>
                     </IonCol>
-                </IonRow>                                                       
-                <IonRow>
+                </IonRow>  
+                 <IonRow>
                     <IonCol>
                         <IonButton expand="block" onClick={async () => {
                             if (await sendRegister()) {
