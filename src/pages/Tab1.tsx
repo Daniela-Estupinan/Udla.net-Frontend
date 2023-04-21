@@ -35,7 +35,7 @@ const Tab1: React.FC = () => {
                         </IonButton>
                     </IonCol>
                     <IonCol>
-                        <IonTitle>Tab 1</IonTitle>
+                        <IonTitle>Feed</IonTitle>
                     </IonCol>
                 </IonRow>
             </IonGrid>
@@ -44,7 +44,7 @@ const Tab1: React.FC = () => {
       <IonContent fullscreen>
         <IonHeader collapse="condense">
           <IonToolbar>
-            <IonTitle size="large">Tab 1</IonTitle>
+            <IonTitle size="large">Feed</IonTitle>
           </IonToolbar>
         </IonHeader>
         <ExploreContainer name="Tab 1 page" />
