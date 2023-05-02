@@ -10,3 +10,8 @@ export const handleSignUp = async (data : any) => {
     const respDat = await postConexion('user/signup', data);
     return respDat;
 }
+
+export const handleUser = async (data : any) => {
+    const respDat = await postConexion('user/', data);
+    return respDat;
+}

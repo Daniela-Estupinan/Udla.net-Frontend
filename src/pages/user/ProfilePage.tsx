@@ -1,5 +1,5 @@
 import React from "react";
-import {IonButton, IonContent, IonHeader, IonIcon, IonPage, IonRow, IonTitle, IonToolbar} from "@ionic/react";
+import {IonButton, IonContent, IonHeader, IonIcon, IonPage, IonRow, IonTitle, IonToolbar,IonCol,IonInput,IonItem} from "@ionic/react";
 import {chevronBackOutline, logOutOutline} from "ionicons/icons";
 import {useHistory} from "react-router";
 
@@ -32,7 +32,36 @@ const ProfilePage: React.FC<ProfilePageProps> = ({sendLogin}) => {
                 </IonToolbar>
             </IonHeader>
             <IonContent className="ion-padding">
-                <IonRow>Works</IonRow>
+            <IonRow>
+                    <IonCol>
+                        <IonItem>
+                            <IonInput
+                                type="text"
+                                label="Nombre"
+                                ></IonInput>
+                        </IonItem>
+                    </IonCol>
+                </IonRow>
+                <IonRow>
+                    <IonCol>
+                        <IonItem>
+                            <IonInput 
+                                type="text"
+                                label="Cargo"
+                            ></IonInput>
+                        </IonItem>
+                    </IonCol>
+                </IonRow>
+                <IonRow>
+                    <IonCol>
+                        <IonItem>
+                            <IonInput
+                                type="text"
+                                label="Descripcion"
+                            ></IonInput>
+                        </IonItem>
+                    </IonCol>
+                </IonRow>
             </IonContent>
         </IonPage>
     )

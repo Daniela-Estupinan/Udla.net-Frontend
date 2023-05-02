@@ -77,15 +77,22 @@ const validateEmail = (email: string) => {
     const value = (ev.target as HTMLInputElement).value;
 
     setIsValid(undefined);
+    setIsTouched(false);
 
     if (value === '') return;
+        
+        validateEmail(value) !== null ? setIsValid(true) : setIsValid(false);
+        if (isValid === true) {
+            setIsValid(undefined);
+          
+      };
+    }
 
-    validateEmail(value) !== null ? setIsValid(true) : setIsValid(false);
-  };
 
   const markTouched = () => {
-    setIsTouched(true);
-  }
+    setIsTouched(false);
+  };
+
 
 
  
@@ -106,9 +113,9 @@ const validateEmail = (email: string) => {
                     <IonCol>
                         <IonItem>
                             <IonInput
-                                className={`${isValid && 'ion-valid'} ${
-                                    isValid === false && 'ion-invalid'
-                                  } ${isTouched && 'ion-touched'}`}
+                              className={`${
+                                    isValid === true ? 'ion-valid' : isValid === false ? 'ion-invalid' : ''
+                                  } ${isTouched ? 'ion-touched' : ''}`}
                                 type="email"
                                 value={email}
                                 label="Correo"
@@ -117,8 +124,7 @@ const validateEmail = (email: string) => {
                                 errorText="Invalid email"
                                 onIonInput={(e) => validate(e)}
                                 onIonBlur={() => markTouched()}
-                                onIonChange={e => setEmail(e.detail.value!)}
-
+                               onIonChange={e => setEmail(e.detail.value!)}
                                 ></IonInput>
                         </IonItem>
                     </IonCol>
