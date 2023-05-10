@@ -45,9 +45,14 @@ setupIonicReact();
 const App: React.FC = () => {
 
     const [isAuthed, setIsAuthed] = useState(false);
+    const [userData, setUserData] = useState({});
     const sendLogin = (data: any) => {
         console.log(data);
         setIsAuthed(data);
+    }
+    const sendUserData = (data: any) => {
+        console.log(data);
+        setUserData(data);
     }
 
     return (
@@ -57,21 +62,18 @@ const App: React.FC = () => {
                     <Route
                         path="/tabs"
                         render={(props) => {
-                            return isAuthed ? <Tabs/> : <LoginPage sendLogin={sendLogin}/>;
+                            return isAuthed ? <Tabs/> : <LoginPage sendLogin={sendLogin} sendUserData={sendUserData}/>;
                         }}
                     />
                     <Route exact path="/login">
-                        <LoginPage  sendLogin={sendLogin}/>
+                        <LoginPage  sendLogin={sendLogin} sendUserData={sendUserData}/>
                     </Route>
                     <Route exact path="/register">
                         <RegisterPage sendLogin={sendLogin} />
                     </Route>
-                    <Route
-                        path="/profile"
-                        render={(props) => {
-                            return isAuthed ? <ProfilePage sendLogin={sendLogin}/> : <LoginPage sendLogin={sendLogin}/>;
-                        }}
-                    />
+                    <Route exact path="/profile">
+                        <ProfilePage sendLogin={sendLogin} userData={userData}/>
+                    </Route>
                     <Route exact path="/">
                         <Redirect to="/tabs"/>
                     </Route>

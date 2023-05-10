@@ -13,13 +13,15 @@ import {
 } from '@ionic/react';
 import {handleLogin} from "../../connection/HandleLogin";
 import {personCircle} from "ionicons/icons";
-import {Link} from "react-router-dom";
+import {Link, useHistory} from "react-router-dom";
 
 interface LoginPageProps {
     sendLogin: (value: boolean) => void;
+    sendUserData: any;
 }
 
-const LoginPage: React.FC<LoginPageProps> = ({sendLogin}) => {
+const LoginPage: React.FC<LoginPageProps> = ({sendLogin, sendUserData}) => {
+    const history = useHistory();
     const [email, setEmail] = useState<any | null>("");
     const [password, setPassword] = useState<any | null>("");
     const [presentAlert] = useIonAlert();
@@ -40,6 +42,8 @@ const LoginPage: React.FC<LoginPageProps> = ({sendLogin}) => {
             return true;
         } else {
             sendLogin(true);
+            sendUserData(user.data);
+            history.push('/tabs/tab1');
             return false;
         }
     }
